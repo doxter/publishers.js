@@ -8,7 +8,7 @@ require.config({
 });
 
 require(['require', 'chai', 'mocha'], function(require, chai) {
-    var expect = chai.expect;
+    expect = chai.expect;
     mocha.setup('bdd');
 
     require([

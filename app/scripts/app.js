@@ -1,9 +1,9 @@
 'use strict';
 
-(function() {
-    var App = function(publisherKey) {
-        this.publisherKey = publisherKey;
+define([], function() {
+    var App = function(config) {
+        this.accountKey = config.accountKey;
     };
 
-    window.doxter.publisher.App = App;
-})();
+    return App;
+});
