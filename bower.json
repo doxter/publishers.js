@@ -4,7 +4,5 @@
   "dependencies": {
     "jquery": "~1.11.0"
   },
-  "devDependencies": {
-    "requirejs": "~2.1.11"
-  }
+  "devDependencies": {}
 }

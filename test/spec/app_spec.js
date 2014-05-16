@@ -1,5 +1,5 @@
-'use strict';
-define(function(require){
+(function() {
+    'use strict';
 
     describe('App', function() {
         describe('App', function() {
@@ -8,5 +8,4 @@ define(function(require){
             });
         });
     });
-
 })();
