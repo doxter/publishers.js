@@ -18,5 +18,5 @@
     "trailing": true,
     "smarttabs": true,
     "jquery": true,
-    "predef": [ "describe", "it", "beforeEach", "afterEach"]
+    "predef": [ "expect", "describe", "it", "beforeEach", "afterEach", "App"]
 }
