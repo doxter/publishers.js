@@ -4,7 +4,12 @@
     var DomWorker;
 
     DomWorker = {
-        render: function() {}
+        render: function() {},
+        scanDoctors: function() {
+            return $('.doctor').map(function() {
+                return $(this).data('doctorId');
+            })
+        }
     };
 
     doxter.publisher.DomWorker = DomWorker;

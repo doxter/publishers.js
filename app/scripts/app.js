@@ -12,13 +12,18 @@
     App.prototype.run = function() {
         var willGetAvailability,
             willGetTemplate,
-            asyncTasks;
+            asyncTasks,
+            doctors;
 
-        willGetAvailability = DataWorker.getAvailability();
+        doctors = DomWorker.scanDoctors();
+        console.log('doctors = ' + doctors);
+        willGetAvailability = DataWorker.getAvailability(doctors);
         willGetTemplate = DataWorker.getTemplate();
         asyncTasks = $.when(willGetAvailability, willGetTemplate);
 
         asyncTasks.done(function() {
+            console.log('both tasks are done');
+            console.log('availability: ' + DataWorker.availability);
             DomWorker.render(DataWorker.availability);
         }).fail(function() {
             p.errorMessage = DataWorker.errorMessage;
