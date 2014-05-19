@@ -7,6 +7,7 @@
 
     function App(config) {
         this.accountKey = config.accountKey;
+        this.templateUrl = config.templateUrl;
     }
 
     App.prototype.run = function() {
@@ -16,15 +17,12 @@
             doctors;
 
         doctors = DomWorker.scanDoctors();
-        console.log('doctors = ' + doctors);
         willGetAvailability = DataWorker.getAvailability(doctors);
-        willGetTemplate = DataWorker.getTemplate();
+        willGetTemplate = DataWorker.getTemplate(this.templateUrl);
         asyncTasks = $.when(willGetAvailability, willGetTemplate);
 
         asyncTasks.done(function() {
-            console.log('both tasks are done');
-            console.log('availability: ' + DataWorker.availability);
-            DomWorker.render(DataWorker.availability);
+            DomWorker.render(DataWorker.template, DataWorker.availability);
         }).fail(function() {
             p.errorMessage = DataWorker.errorMessage;
         });

@@ -18,7 +18,6 @@
                 context: p.DataWorker
             }).done(function(data) {
                 this.template = data;
-                console.log('template fetched');
                 defer.resolve();
             });
 
@@ -33,9 +32,7 @@
                 //url: self._baseUrl + doctors.concat(','),
                 context: p.DataWorker
             }).done(function(data) {
-                console.log('data fetched');
                 this.availability = this._dummyData(doctors);
-                console.log(this._dummyData(doctors));
                 defer.resolve();
             });
 
@@ -43,6 +40,7 @@
         },
 
         _baseUrl: 'https://publisher-api.doxter.de/availability/',
+
         _dummyData: function(doctors) {
             var hour = 60000 * 60;
             var availability = [];
@@ -51,17 +49,18 @@
             var tomorrow = new Date(today.getTime() + 24 * hour);
             var tomorrowAndHourLater = new Date(tomorrow.getTime() + 24 * hour);
 
-            console.log('today: ' + today);
-            console.log('hour later: ' + hourLater);
-            console.log('tomorrow: ' +  tomorrow);
-            console.log('tomorrowAndHourLater: ' +  tomorrowAndHourLater);
-
             for (var i=0; i<doctors.length;i++) {
                 availability.push({
-                    id: doctors[i],
-                    avaiability: [
-                        { start: today, end: hourLater },
-                        { start: tomorrow, end: tomorrowAndHourLater }
+                    doctorId: doctors[i],
+                    availability: [
+                        { problem: 'Kontrol', times: [
+                            { start: today, end: hourLater, url: '/dummy.html' },
+                            { start: tomorrow, end: tomorrowAndHourLater, url: '/dummy.html' } ]
+                        },
+                        { problem: 'Fuellung', times: [
+                            { start: today, end: hourLater, url: '/dummy.html' },
+                            { start: tomorrow, end: tomorrowAndHourLater, url: 'dummy.html' } ]
+                        },
                     ]
                 });
             }
