@@ -1,7 +1,10 @@
 <div>
-    <span class="problem">{{problem}}</span>
+    {{#each availability}}
+        <span class="problem">{{problem}}</span>
 
-    {% for availability in availabilities %}
-        <a href='{{avaiability.url}}'>{{availability.startTime}} - {{availability.endTime}}</span>
+        {{#each times}}
+        <a href='{{url}}'>{{start}} - {{end}}</span>
+        {{/each}}
+    {{/each}}
 </div>
 

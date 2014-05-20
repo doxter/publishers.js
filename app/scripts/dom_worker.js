@@ -5,15 +5,14 @@
 
     DomWorker = {
         render: function(template, data) {
+            template = Handlebars.compile(template);
+
             for (var i=0; i<data.length; i++) {
                 var doctor = data[i].doctorId;
                 var tmpDom = document.createElement('div');
+                var cont = template({ availability: data[i].availability });
 
-                for (var j=0; j<data[i].availability.length; j++) {
-                    var a = data[i].availability[j];
-
-                    $(tmpDom).append(template.replace('{{problem}}', a.problem));
-                }
+                $(tmpDom).append(cont);
                 $('.availability[data-doctor-id=' + doctor + ']').html(tmpDom);
             }
         },
