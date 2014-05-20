@@ -29,7 +29,6 @@
                 self = this;
 
             $.ajax({
-                //url: self._baseUrl + doctors.concat(','),
                 context: p.DataWorker
             }).done(function(data) {
                 this.availability = this._dummyData(doctors);
@@ -54,13 +53,13 @@
                     doctorId: doctors[i],
                     availability: [
                         { problem: 'Kontrol', times: [
-                            { start: today, end: hourLater, url: '/dummy.html' },
-                            { start: tomorrow, end: tomorrowAndHourLater, url: '/dummy.html' } ]
+                            { date: today.toLocaleDateString(), start: today.toLocaleTimeString().replace(/:\d+/, ''), end: hourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' },
+                            { date: tomorrow.toLocaleDateString(), start: tomorrow.toLocaleTimeString().replace(/:\d+/, ''), end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' } ]
                         },
                         { problem: 'Fuellung', times: [
-                            { start: today, end: hourLater, url: '/dummy.html' },
-                            { start: tomorrow, end: tomorrowAndHourLater, url: 'dummy.html' } ]
-                        },
+                            { date: today.toLocaleDateString(), start: today.toLocaleTimeString().replace(/:\d+/, ''), end: hourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' },
+                            { date: tomorrow.toLocaleDateString(), start: tomorrow.toLocaleTimeString().replace(/:\d+/, ''), end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' } ]
+                        }
                     ]
                 });
             }

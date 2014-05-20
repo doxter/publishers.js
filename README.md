@@ -41,6 +41,7 @@ Template can use Handlebars syntax: http://handlebarsjs.com/. For each doctor, e
         {
             problem: String,
             times: [
+                date: String,
                 start: String,
                 end: String
             ]
