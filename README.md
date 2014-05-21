@@ -14,7 +14,12 @@ Doctors' availabilities will be injected into tag contents, which have 'availabi
 
 Note that at current protototype stage, doctor id can be arbitrary.
 
-- Insert the script between `<head>` and `</head>`
+- Require jQuery since our code depends on jQuery.
+```
+<script src="<path-to-jquery>"></script>
+```
+
+- Insert the script between `<head>` and `</head>, but after jquery:`
 
 ```
 <script src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
