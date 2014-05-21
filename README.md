@@ -16,7 +16,7 @@ Note that at current protototype stage, doctor id can be arbitrary.
 
 - Insert the script between `<head>` and `</head>`
 
-```
+```javascript
 <script src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
 <script>doxter.publisher.load({accountKey: 'xxxx'});</script>
 ```
