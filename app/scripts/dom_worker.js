@@ -13,13 +13,13 @@
                 var cont = template({ availability: data[i].availability });
 
                 $(tmpDom).append(cont);
-                $('.availability[data-doctor-id=' + doctor + ']').html(tmpDom);
+                $('.availability[data-doxter-id=' + doctor + ']').html(tmpDom);
             }
         },
 
         scanDoctors: function() {
             return $('.availability').map(function() {
-                return $(this).data('doctorId');
+                return $(this).data('doxterId');
             })
         }
     };
