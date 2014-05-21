@@ -8,14 +8,18 @@ Publisher-side implementation
 - Prepare the webpage.
 Doctors' availabilities will be injected into tag contents, which have 'availability' class and data-doxter-id attribute. Example HTML tag would be
 
-    <div class="availability" data-doxter-id="12345"></div>
+```
+<div class="availability" data-doxter-id="12345"></div>
+```
 
 Note that at current protototype stage, doctor id can be arbitrary.
 
 - Insert the script between `<head>` and `</head>`
 
-    `<script src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>`
-    `<script>doxter.publisher.load({accountKey: 'xxxx'});</script>`
+```
+<script src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
+<script>doxter.publisher.load({accountKey: 'xxxx'});</script>
+```
 
 - Templating
 
