@@ -9,17 +9,23 @@
         availability: [],
         template: {},
 
-        // getTemplate and getAvailability methods should be refactored with shared ajaxing parts.
         getTemplate: function(templateUrl) {
             var defer = $.Deferred();
 
-            $.ajax({
-                url: templateUrl,
-                context: p.DataWorker
-            }).done(function(data) {
-                this.template = data;
+            if (templateUrl === undefined) {
+                this.template = this._defaultTemplate;
                 defer.resolve();
-            });
+            } else {
+                $.ajax({
+                    url: templateUrl,
+                    context: p.DataWorker
+                }).done(function(data) {
+                    this.template = data;
+                    defer.resolve();
+                }).fail(function() {
+                    console.log('Specified template file is not available. Please check the internet connection and if the file exists.');
+                });
+            }
 
             return defer.promise();
         },
@@ -28,7 +34,9 @@
             var defer = $.Deferred(),
                 self = this;
 
+            // Since JSON API is not available yet, this ajax does not fetch remote data.
             $.ajax({
+                url: "",
                 context: p.DataWorker
             }).done(function(data) {
                 this.availability = this._dummyData(doctors);
@@ -39,6 +47,8 @@
         },
 
         _baseUrl: 'https://publisher-api.doxter.de/availability/',
+
+        _defaultTemplate: '<div class="availability-entry"> {{#each availability}} <span class="problem">{{problem}}</span> {{#each times}} <div class="time">{{day}} {{start}}<a class="btn" href="{{url}}">Buchen</a></div> {{/each}} {{/each}} </div> ',
 
         _dummyData: function(doctors) {
             var hour = 60000 * 60;
@@ -52,18 +62,50 @@
                 availability.push({
                     doctorId: doctors[i],
                     availability: [
-                        { problem: 'Kontrol', times: [
-                            { date: today.toLocaleDateString(), start: today.toLocaleTimeString().replace(/:\d+/, ''), end: hourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' },
-                            { date: tomorrow.toLocaleDateString(), start: tomorrow.toLocaleTimeString().replace(/:\d+/, ''), end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' } ]
-                        },
+                        { problem: 'Kontrolltermin', times: [
+                            {
+                                date: today.toLocaleDateString(),
+                                day: this._day[today.getDay()],
+                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
+                            },
+                            {
+                                date: tomorrow.toLocaleDateString(),
+                                day: this._day[tomorrow.getDay()],
+                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
+                        ] },
                         { problem: 'Fuellung', times: [
-                            { date: today.toLocaleDateString(), start: today.toLocaleTimeString().replace(/:\d+/, ''), end: hourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' },
-                            { date: tomorrow.toLocaleDateString(), start: tomorrow.toLocaleTimeString().replace(/:\d+/, ''), end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+/, ''), url: '/dummy.html' } ]
-                        }
+                            {
+                                date: today.toLocaleDateString(),
+                                day: this._day[today.getDay()],
+                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
+                            },
+                            {
+                                date: tomorrow.toLocaleDateString(),
+                                day: this._day[tomorrow.getDay()],
+                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
+                        ] }
                     ]
                 });
             }
             return availability;
+        },
+
+        _day: {
+            0: 'Sonntag',
+            1: 'Montag',
+            2: 'Dienstag',
+            3: 'Mittwoch',
+            4: 'Donnerstag',
+            5: 'Freitag',
+            6: 'Samstag'
         }
     };
 

@@ -64,6 +64,7 @@
         </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="../bower_components/handlebars/handlebars.js"></script>
         <script src="scripts/doxter.js"></script>
         <script src="scripts/data_worker.js"></script>
         <script src="scripts/dom_worker.js"></script>
@@ -72,7 +73,7 @@
         <!-- endbuild -->
 
         <script>
-            window.doxter.publisher.load({accountKey: 'xxx', templateUrl: './template.html'});
+            window.doxter.publisher.load({accountKey: 'xxx'});
         </script>
 </body>
 </html>
