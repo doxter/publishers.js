@@ -48,7 +48,7 @@
 
         _baseUrl: 'https://publisher-api.doxter.de/availability/',
 
-        _defaultTemplate: '<div class="availability-entry"> {{#each availability}} <span class="problem">{{problem}}</span> {{#each times}} <div class="time">{{day}} {{start}}<a class="btn" href="{{url}}">Buchen</a></div> {{/each}} {{/each}} </div> ',
+        _defaultTemplate: '{{#each availability}} <div class="availability-entry"><div class="problem">{{problem}}</div> {{#each times}} <div class="time">{{day}} {{start}}<a class="btn" href="{{url}}">Buchen</a></div> {{/each}} </div> {{/each}}',
 
         _dummyData: function(doctors) {
             var hour = 60000 * 60;
