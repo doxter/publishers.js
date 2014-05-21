@@ -16,14 +16,13 @@ Note that at current protototype stage, doctor id can be arbitrary.
 
 - Require jQuery since our code depends on jQuery.
 ```
-<script src="<path-to-jquery>"></script>
+<script src="path-to-jquery"></script>
 ```
 
 - Insert the script between `<head>` and `</head>, but after jquery:`
 
 ```
-<script src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
-<script>doxter.publisher.load({accountKey: 'xxxx'});</script>
+<script id="doxter-publisher-js" data-account-key="xxxx" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
 ```
 
 - Templating
@@ -42,6 +41,10 @@ If not specified, default template will be used. Default template is equivalent 
     {{/each}}
 
 In order to customise the view, create a template file and specify the file name at the loading. For instance, a patrial HTML like follows can reside as template.html
+
+```
+<script id="doxter-publisher-js" data-account-key="xxxx" data-template-url="template.html" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
+```
 
     {{#each availability}}
         <span class="problem">{{problem}}</span>
