@@ -3,9 +3,10 @@
 (function() {
     var p = window.doxter.publisher;
 
-    p.load = function(config) {
-        $(function() {
-            (new p.App(config)).run();
-        });
-    };
+    $(function() {
+        var accountKey = $('#doxter-publisher-js').data('accountKey'),
+            templateUrl = $('#doxter-publisher-js').data('templateUrl');
+
+        (new p.App({ accountKey: accountKey, templateUrl: templateUrl })).run();
+    });
 })();
