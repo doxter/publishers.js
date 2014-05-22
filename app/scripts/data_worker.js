@@ -10,13 +10,13 @@
         template: {},
 
         getTemplate: function(templateUrl) {
-            var defer = $.Deferred();
+            var defer = p.jq.Deferred();
 
             if (templateUrl === undefined) {
                 this.template = this._defaultTemplate;
                 defer.resolve();
             } else {
-                $.ajax({
+                p.jq.ajax({
                     url: templateUrl,
                     context: p.DataWorker
                 }).done(function(data) {
@@ -31,11 +31,11 @@
         },
 
         getAvailability: function(doctors) {
-            var defer = $.Deferred(),
+            var defer = p.jq.Deferred(),
                 self = this;
 
             // Since JSON API is not available yet, this ajax does not fetch remote data.
-            $.ajax({
+            p.jq.ajax({
                 url: "",
                 context: p.DataWorker
             }).done(function(data) {
@@ -66,30 +66,30 @@
                             {
                                 date: today.toLocaleDateString(),
                                 day: this._day[today.getDay()],
-                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
-                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                start: today.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
                             },
                             {
                                 date: tomorrow.toLocaleDateString(),
                                 day: this._day[tomorrow.getDay()],
-                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
-                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
                         ] },
                         { problem: 'Fuellung', times: [
                             {
                                 date: today.toLocaleDateString(),
                                 day: this._day[today.getDay()],
-                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
-                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                start: today.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
                             },
                             {
                                 date: tomorrow.toLocaleDateString(),
                                 day: this._day[tomorrow.getDay()],
-                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
-                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M$/, ''),
+                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
                         ] }
                     ]

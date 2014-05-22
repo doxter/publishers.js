@@ -1,7 +1,8 @@
 'use strict';
 
 (function() {
-    var DomWorker;
+    var DomWorker,
+        p = window.doxter.publisher;
 
     DomWorker = {
         render: function(template, data) {
@@ -12,14 +13,14 @@
                 var tmpDom = document.createElement('div');
                 var cont = template({ availability: data[i].availability });
 
-                $(tmpDom).append(cont);
-                $('.availability[data-doxter-id=' + doctor + ']').html(tmpDom);
+                p.jq(tmpDom).append(cont);
+                p.jq('.availability[data-doxter-id=' + doctor + ']').html(tmpDom);
             }
         },
 
         scanDoctors: function() {
-            return $('.availability').map(function() {
-                return $(this).data('doxterId');
+            return p.jq('.availability').map(function() {
+                return p.jq(this).data('doxterId');
             })
         }
     };

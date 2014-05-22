@@ -19,7 +19,7 @@
         doctors = DomWorker.scanDoctors();
         willGetAvailability = DataWorker.getAvailability(doctors);
         willGetTemplate = DataWorker.getTemplate(this.templateUrl);
-        asyncTasks = $.when(willGetAvailability, willGetTemplate);
+        asyncTasks = p.jq.when(willGetAvailability, willGetTemplate);
 
         asyncTasks.done(function() {
             DomWorker.render(DataWorker.template, DataWorker.availability);
