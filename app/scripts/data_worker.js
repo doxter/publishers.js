@@ -66,30 +66,30 @@
                             {
                                 date: today.toLocaleDateString(),
                                 day: this._day[today.getDay()],
-                                start: today.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
-                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
                             },
                             {
                                 date: tomorrow.toLocaleDateString(),
                                 day: this._day[tomorrow.getDay()],
-                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
-                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
                         ] },
                         { problem: 'Fuellung', times: [
                             {
                                 date: today.toLocaleDateString(),
                                 day: this._day[today.getDay()],
-                                start: today.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
-                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
                             },
                             {
                                 date: tomorrow.toLocaleDateString(),
                                 day: this._day[tomorrow.getDay()],
-                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
-                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]Mp.jq/, ''),
+                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
                                 url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
                         ] }
                     ]
