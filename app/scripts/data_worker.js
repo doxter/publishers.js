@@ -23,7 +23,7 @@
                     this.template = data;
                     defer.resolve();
                 }).fail(function() {
-                    console.log('Specified template file is not available. Please check the internet connection and if the file exists.');
+                    throw 'Specified template file is not available. Please check the internet connection and if the file exists.';
                 });
             }
 
@@ -41,6 +41,8 @@
             }).done(function(data) {
                 this.availability = this._dummyData(doctors);
                 defer.resolve();
+            }).fail(function() {
+                throw 'Cannot retreive data from API server.';
             });
 
             return defer.promise();
