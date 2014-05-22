@@ -1,9 +1,9 @@
-Publisher project js part
-=========================
+Doxter publisher availability-retreival javascript
+==================================================
 
 
-Publisher-side implementation
------------------------------
+Integration
+-----------
 
 - Prepare the webpage.
 Doctors' availabilities will be injected into tag contents, which have 'availability' class and data-doxter-id attribute. Example HTML tag would be
