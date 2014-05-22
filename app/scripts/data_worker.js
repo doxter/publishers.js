@@ -9,6 +9,7 @@
         availability: [],
         template: {},
 
+        // Below, ajax call code contain redundancy. Let it be as it is until the dummy data is no more needed.
         getTemplate: function(templateUrl) {
             var defer = p.jq.Deferred();
 
@@ -31,8 +32,7 @@
         },
 
         getAvailability: function(doctors) {
-            var defer = p.jq.Deferred(),
-                self = this;
+            var defer = p.jq.Deferred();
 
             // Since JSON API is not available yet, this ajax does not fetch remote data.
             p.jq.ajax({
