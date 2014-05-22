@@ -21,7 +21,7 @@
         scanDoctors: function() {
             return p.jq('.availability').map(function() {
                 return p.jq(this).data('doxterId');
-            })
+            });
         }
     };
 
