@@ -36,9 +36,9 @@
 
             // Since JSON API is not available yet, this ajax does not fetch remote data.
             p.jq.ajax({
-                url: "",
+                url: '',
                 context: p.DataWorker
-            }).done(function(data) {
+            }).done(function() {
                 this.availability = this._dummyData(doctors);
                 defer.resolve();
             }).fail(function() {
@@ -64,36 +64,44 @@
                 availability.push({
                     doctorId: doctors[i],
                     availability: [
-                        { problem: 'Kontrolltermin', times: [
-                            {
-                                date: today.toLocaleDateString(),
-                                day: this._day[today.getDay()],
-                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
-                            },
-                            {
-                                date: tomorrow.toLocaleDateString(),
-                                day: this._day[tomorrow.getDay()],
-                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
-                        ] },
-                        { problem: 'Fuellung', times: [
-                            {
-                                date: today.toLocaleDateString(),
-                                day: this._day[today.getDay()],
-                                start: today.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
-                            },
-                            {
-                                date: tomorrow.toLocaleDateString(),
-                                day: this._day[tomorrow.getDay()],
-                                start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
-                                url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil' }
-                        ] }
+                        {
+                            problem: 'Kontrolltermin',
+                            times: [
+                                {
+                                    date: today.toLocaleDateString(),
+                                    day: this._day[today.getDay()],
+                                    start: today.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
+                                },
+                                {
+                                    date: tomorrow.toLocaleDateString(),
+                                    day: this._day[tomorrow.getDay()],
+                                    start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
+                                }
+                            ]
+                        },
+                        {
+                            problem: 'Fuellung',
+                            times: [
+                                {
+                                    date: today.toLocaleDateString(),
+                                    day: this._day[today.getDay()],
+                                    start: today.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    end: hourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
+                                },
+                                {
+                                    date: tomorrow.toLocaleDateString(),
+                                    day: this._day[tomorrow.getDay()],
+                                    start: tomorrow.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    end: tomorrowAndHourLater.toLocaleTimeString().replace(/:\d+ [AP]M/, ''),
+                                    url: 'http://www.doxter.de/zahnarzt-berlin/dr-max-mustermann-schauprofil'
+                                }
+                            ]
+                        }
                     ]
                 });
             }
