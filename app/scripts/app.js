@@ -6,7 +6,7 @@
         DomWorker = p.DomWorker;
 
     function App(config) {
-        this.accountKey = config.accountKey;
+        this.publisherKey= config.publisherKey;
         this.templateUrl = config.templateUrl;
     }
 

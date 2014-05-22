@@ -14,7 +14,7 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-        <script id="doxter-publisher-js" data-account-key="xxxx"></script>
+        <script id="doxter-publisher-js" data-publisher-key="xxxx"></script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -49,7 +49,6 @@
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="../bower_components/handlebars/handlebars.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -64,6 +63,7 @@
         </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="../bower_components/handlebars/handlebars.js"></script>
         <script src="scripts/doxter.js"></script>
         <script src="scripts/jq.js"></script>
         <script src="scripts/data_worker.js"></script>

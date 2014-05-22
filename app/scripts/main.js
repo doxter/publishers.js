@@ -4,9 +4,9 @@
     var p = window.doxter.publisher;
 
     p.jq(function() {
-        var accountKey = p.jq('#doxter-publisher-js').data('accountKey'),
+        var publisherKey = p.jq('#doxter-publisher-js').data('publisherKey'),
             templateUrl = p.jq('#doxter-publisher-js').data('templateUrl');
 
-        (new p.App({ accountKey: accountKey, templateUrl: templateUrl })).run();
+        (new p.App({ publisherKey: publisherKey, templateUrl: templateUrl })).run();
     });
 })();

@@ -12,17 +12,13 @@ Doctors' availabilities will be injected into tag contents, which have 'availabi
 <div class="availability" data-doxter-id="12345"></div>
 ```
 
-Note that at current protototype stage, doctor id can be arbitrary.
+Note that at current protototype stage, doxter id can be arbitrary.
 
-- Require jQuery since our code depends on jQuery.
-```
-<script src="path-to-jquery"></script>
-```
 
-- Insert the script between `<head>` and `</head>, but after jquery:`
+- Insert the script between `<head>` and `</head>`
 
 ```
-<script id="doxter-publisher-js" data-account-key="xxxx" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
+<script id="doxter-publisher-js" data-publisher-key="xxxx" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
 ```
 
 - Templating
@@ -43,7 +39,7 @@ If not specified, default template will be used. Default template is equivalent 
 In order to customise the view, create a template file and specify the file name at the loading. For instance, a patrial HTML like follows can reside as template.html
 
 ```
-<script id="doxter-publisher-js" data-account-key="xxxx" data-template-url="template.html" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
+<script id="doxter-publisher-js" data-publisher-key="xxxx" data-template-url="template.html" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.1.min.js"></script>
 ```
 
     {{#each availability}}
