@@ -28,11 +28,11 @@ Handlebars syntax is available. http://handlebarsjs.com/
 If not specified, default template will be used. Default template is equivalent to:
 
     {{#each availability}}
-    <div class="availability-entry">
-        <div class="problem">{{problem}}</div>
+    <div class="doxter-availability-entry">
+        <div class="doxter-problem">{{problem}}</div>
         {{#each times}}
-            <div class="time">{{day}} {{start}}
-                <a class="btn" href="{{url}}">Buchen</a>
+            <div class="doxter-time">{{day}} {{start}}
+                <a class="doxter-btn" href="{{url}}">Buchen</a>
             </div> {{/each}} </div>
     {{/each}}
 
