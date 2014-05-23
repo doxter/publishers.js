@@ -87,6 +87,7 @@ module.exports = function (grunt) {
                 options: {
                     open: false,
                     port: 9001,
+                    keepalive: false,
                     middleware: function(connect) {
                         return [
                             connect.static('.tmp'),
@@ -311,6 +312,16 @@ module.exports = function (grunt) {
                 'imagemin',
                 'svgmin'
             ]
+        },
+
+        symlink: {
+            options: {
+                overwrite: false
+            },
+            explicit: {
+                src: '<%= config.app %>/scripts/app.js',
+                dest: 'test/app/scripts/app.js'
+            }
         }
     });
 
