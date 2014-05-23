@@ -312,16 +312,6 @@ module.exports = function (grunt) {
                 'imagemin',
                 'svgmin'
             ]
-        },
-
-        symlink: {
-            options: {
-                overwrite: false
-            },
-            explicit: {
-                src: '<%= config.app %>/scripts/app.js',
-                dest: 'test/app/scripts/app.js'
-            }
         }
     });
 
