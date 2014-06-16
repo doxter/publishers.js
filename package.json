@@ -1,22 +1,14 @@
 {
-  "name": "grunt-contrib-jasmine-example",
-  "description": "Example application using grunt-contrib-jasmine",
+  "name": "publisher.js",
+  "description": "simple application for publisher js with jasmine",
   "version": "0.1.0",
-  "homepage": "https://github.com/jsoverson/grunt-contrib-jasmine-example",
-  "author": {
-    "name": "Jarrod Overson",
-    "email": "jsoverson@gmail.com",
-    "url": "http://jarrodoverson.com/"
-  },
+  "homepage": "https://github.com/doxter/publishers.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jsoverson/grunt-contrib-jasmine-example.git"
+    "url": "git@github.com:doxter/publishers.js.git"
   },
   "scripts": {
     "test": "grunt test"
-  },
-  "bugs": {
-    "url": "https://github.com/jsoverson/grunt-contrib-jasmine-example/issues"
   },
   "devDependencies": {
     "grunt-contrib-jasmine": "~0.4.0",
