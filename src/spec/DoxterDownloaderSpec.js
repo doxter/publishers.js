@@ -1,6 +1,5 @@
 'use strict';
 
-/*globals DoxterDownloader:false, Song: false*/
 
 describe("DoxterDownloader", function() {
     var publisher;
