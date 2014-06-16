@@ -1,31 +1,18 @@
 module.exports = function(grunt) {
   'use strict';
 
-  // Project configuration.
-  grunt.initConfig({
-    jasmine : {
-      src : 'src/**/*.js',
-      options : {
-        specs : 'spec/**/*.js'
-      }
-    },
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'src/**/*.js',
-        'spec/**/*.js'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    }
-  });
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
+        }
+    });
 
-  grunt.registerTask('test', ['jshint', 'jasmine']);
+    grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask('default', ['test']);
+    grunt.registerTask('default', ['karma']);
 
 };
