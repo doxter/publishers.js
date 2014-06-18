@@ -1,33 +1,34 @@
 'use strict';
 
 function DoxterDownloader() {
-
+  this.doxterApiUrl = '/echo/html/';
 }
 
-DoxterDownloader.prototype.download = function() {
-    this.isDownloaded = true;
+DoxterDownloader.prototype.insertDoctorsContent = function(content) {
+    var doxteContent =  document.getElementById('doxter_content');
+    if(doxteContent !== undefined)
+    {
+      doxteContent.innerHTML = content
+    }
 };
 
 DoxterDownloader.prototype.doxterRequestListener = function() {
-//    if (this.readyState === 4) {
-//        if (this.status >= 200 && this.status < 400) {
-//            // Success!
-////            document.getElementById('doxter_content').innerHTML = this.responseText;
-//        } else {
-//            // Error :(
-//        }
-//    }
-}();
+    if ((this.readyState == this.DONE)) {
+        if (this.status >= 200 && this.status < 400) {
+            this.insertDoctorsContent(this.responseText)
+        }
+    }
+};
 
 DoxterDownloader.prototype.getDoxterData = function(doxterListener) {
    if (document.readyState === 'complete') {
         var request = new XMLHttpRequest();
         if(doxterListener === undefined || doxterListener === null)
         {
-            doxterListener = this.doxterRequestListener();
+            doxterListener = this.doxterRequestListener;
         }
         request.onreadystatechange = doxterListener;
-        request.open('GET', '/echo/html/');
+        request.open('GET', this.doxterApiUrl);
         request.send();
         request = null;
     }

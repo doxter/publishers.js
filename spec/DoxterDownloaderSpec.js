@@ -6,13 +6,20 @@ describe("DoxterDownloader", function() {
 
     beforeEach(function () {
         doxterDownloader = new DoxterDownloader();
+
+        var doxterdiv = document.createElement('div');
+        doxterdiv.id = "doxter_content";
+        doxterdiv.innerHTML = "some_text"
+        document.getElementsByTagName('body')[0].appendChild(doxterdiv);
+
         jasmine.Ajax.install();
 
     });
 
-    it("should be able to download a doctors", function () {
-        doxterDownloader.download();
-        expect(doxterDownloader.isDownloaded).toEqual(true);
+    it("should be able to insert a doctors to div", function () {
+        var custom_content = "custom"
+        doxterDownloader.insertDoctorsContent(custom_content);
+        expect(document.getElementById('doxter_content').innerHTML).toBe(custom_content);
     });
 
     afterEach(function() {

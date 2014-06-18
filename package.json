@@ -20,6 +20,7 @@
       "karma": "~0.10.9",
       "karma-story-reporter": "~0.2.2",
       "grunt-karma": "~0.6.2",
+      "grunt-contrib-jasmine": "~0.6.5",
       "grunt-cli": "~0.1.13",
       "karma-sauce-launcher": "~0.1.8"
   },
