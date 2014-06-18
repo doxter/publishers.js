@@ -5,10 +5,10 @@ function DoxterDownloader() {
 }
 
 DoxterDownloader.prototype.insertDoctorsContent = function(content) {
-    var doxteContent =  document.getElementById('doxter_content');
-    if(doxteContent !== undefined)
+    var doxterContent =  document.getElementById('doxter_content');
+    if(doxterContent !== undefined)
     {
-      doxteContent.innerHTML = content
+      doxterContent.innerHTML = content
     }
 };
 

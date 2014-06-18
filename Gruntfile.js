@@ -9,6 +9,16 @@ module.exports = function(grunt) {
                 configFile: 'karma.conf.js'
             }
         },
+        uglify: {
+            options: {
+              mangle: false
+            },
+            my_target: {
+                files: {
+                    'dest/doxter_publisher.min.js': ['src/DoxterDownloader.js']
+                }
+            }
+        },
         jasmine : {
             src : 'src/**/*.js',
             options : {
@@ -31,9 +41,11 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('test', ['jasmine']);
+    grunt.registerTask('build', ['uglify']);
     grunt.registerTask('default', ['karma']);
 
 };
