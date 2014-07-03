@@ -12,6 +12,26 @@ DoxterDownloader.prototype.insertDoctorsContent = function(content) {
     }
 };
 
+DoxterDownloader.prototype.getAllDoctorsDivs = function() {
+    var greenTest = document.querySelectorAll('[data-doctor-id]');;
+    return greenTest;
+}
+
+DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
+    var doctors_json = {};
+    var doctor_ids= [];
+
+    for (var i = 0; i < data_divs.length; i++) {
+        doctor_ids[i] = data_divs[i].getAttribute("data-doctor-id");
+    }
+
+    doctors_json["doctors_ids"] = doctor_ids;
+    var serialized_json = JSON.stringify(doctors_json);
+
+    return serialized_json;
+}
+
+
 DoxterDownloader.prototype.doxterRequestListener = function() {
     if ((this.readyState == this.DONE)) {
         if (this.status >= 200 && this.status < 400) {
