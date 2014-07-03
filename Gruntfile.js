@@ -22,8 +22,8 @@ module.exports = function(grunt) {
         jasmine : {
             src : 'src/**/*.js',
             options : {
-                vendor: [
-                    'vendor/jasmine/jasmine-ajax.js'],
+                vendor: ['vendor/*.js',
+                    'vendor/**/*.js'],
                 specs : 'spec/**/*.js'
             }
         },

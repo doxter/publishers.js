@@ -6,12 +6,8 @@ describe("DoxterDownloader", function() {
 
     beforeEach(function () {
         doxterDownloader = new DoxterDownloader();
-
-        var doxterdiv = document.createElement('div');
-        doxterdiv.id = "doxter_content";
-        doxterdiv.innerHTML = "some_text"
-        document.getElementsByTagName('body')[0].appendChild(doxterdiv);
-
+        jasmine.getFixtures().fixturesPath = "spec/fixtures";
+        loadFixtures('test_page.html');
         jasmine.Ajax.install();
 
     });
