@@ -1,4 +1,0 @@
-test:
-  pre:
-    - bower install
-    - cd test; bower install; cd ..
