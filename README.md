@@ -1,95 +1,46 @@
-publisher.js
-============
+> Doxter downloader plugin for publisher with jasmine
 
-publisher.js lets you integrate doctors' availabilities information from doxter.de on your own website. The plugin fetches updated times for different medical issues via the doxter Availabilities API.
+## Getting Started
+_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
-Getting started
----------------
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install the project's dependencies
 
-Insert an HTML tag where you want to display doctors' availabilities. The HTML tag must contain the 'availability' class and the 'data-doxter-id' attribute. The tag can be any valid HTML tag, e.g. `<span>`, `<p>` or `<div>`:
-
-```
-<div class="availability" data-doxter-id="example-id"></div>
-```
-
-(For prototyping the data-doxter-id can be arbitrary.)
-
-Insert the following script tag between the `<head>` and `</head>` tags.
-
-```
-<script id="doxter-publisher-js" data-publisher-key="example-publisher-key" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.2.min.js"></script>
+```bash
+sudo apt-get install nvm
+nvm ls-remote , install the last version
+nvm install "version"
+nvm use "version"
+npm install
 ```
 
-Each client will have a unique publisher key provided by doxter. To obtain your publisher key, log into the doxter publisher administration website. (Currently doxter is preparing the administration interface.)
+Once that's done, you can run the jasmine unit tests via
 
-
-Templating
-----------
-The [Handlebars library](http://handlebarsjs.com/) is used for templating.
-
-If you do not specify your own template for displaying doctors' availabilities, the following default template will be used:
-
-    {{#each availability}}
-    <div class="doxter-availability-entry">
-        <div class="doxter-problem">{{problem}}</div>
-        {{#each times}}
-            <div class="doxter-time">{{day}} {{start}}
-                <a class="doxter-btn" href="{{url}}">Buchen</a>
-            </div> {{/each}} </div>
-    {{/each}}
-
-In order to customise the view, create a template file and specify the file name. For instance, create a partial HTML file with the following contents and name it template.html.
-
-    {{#each availability}}
-        <span class="problem">{{problem}}</span>
-
-        {{#each times}}
-        <a href='{{url}}'>{{start}} - {{end}}</span>
-       {{/each}}
-    {{/each}}
-
-The location of the template file needs to be specified in the script tag which refers to the publisher.js javascript file:
-`
-```
-<script id="doxter-publisher-js" data-publisher-key="example-publisher-key" data-template-url="template.html" src="http://blog.doxter.de/publishers.js/doxter-publisher-0.0.2.min.js"></script>
+```js
+grunt jasmine
 ```
 
-Make sure that the file can be accessed by the Ajax (XMLHTTP) Request.
+```js
+grunt jasmine
+```
 
-To check all the available templating syntaxes, visit [Handlebars' website](http://handlebarsjs.com/).
+```build mini version
+grunt build
+```
 
+`package.json` allows you to define the script to execute when you run 'npm test'
 
-In the template, the following data for each doctor's availability is accessible. (Since we are still on a prototype stage, the data structure is likely to change.)
+`grunt test` is registered to run `['jasmine']` to thoroughly test your code.
 
-    {
-        availability: [
-            {
-                problem: String,
-                times: [
-                    {
-                        date: String,
-                        day: String,
-                        start: String,
-                        end: String,
-                        url: String
-                    }
-                ]
-            }
-        ]
-    }
+```js
+grunt.registerTask('test', ['jshint', 'jasmine']);
+```
+
+[grunt]: http://gruntjs.com/
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[package.json]: https://npmjs.org/doc/json.html
 
 
+## Release History
 
-Contribution
-------------
+ * 2014-18-06 - v0.0.1 - Initial release
 
-- Get the code
-- Install tools
-    - npm
-    - nodejs-legacy
-- Install npm packages locally
-    - `% npm install`
-- Recommended local settings
-    - `% npm config set prefix ~/.npm`
-    - `% export PATH=~/.npm/bin`
-    - `% export NODEPATH=~/.npm/lib/node_modules`
