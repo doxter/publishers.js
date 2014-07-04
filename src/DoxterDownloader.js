@@ -5,16 +5,27 @@ function DoxterDownloader() {
 }
 
 DoxterDownloader.prototype.insertDoctorsContent = function(content) {
-    var doxterContent =  document.getElementById('doxter_content');
-    if(doxterContent !== undefined)
+    var elements = this.getAllDoctorsDivs();
+    for(var element in elements)
     {
-      doxterContent.innerHTML = content
+        var doctor_attributes = elements[element]["attributes"]
+        if(doctor_attributes != undefined)
+        {
+            var doctor_id = doctor_attributes.getNamedItem("data-doctor-id");
+            if(doctor_id != undefined)
+            {
+                var value = doctor_id.value
+                if(value != undefined) {
+                    elements[element].innerHTML = content["doctors_ids"][value]
+                }
+            }
+        }
     }
 };
 
 DoxterDownloader.prototype.getAllDoctorsDivs = function() {
-    var greenTest = document.querySelectorAll('[data-doctor-id]');;
-    return greenTest;
+    var allDoctorsDivs = document.querySelectorAll('[data-doctor-id]');
+    return allDoctorsDivs;
 }
 
 DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
@@ -33,23 +44,25 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
 
 
 DoxterDownloader.prototype.doxterRequestListener = function() {
-    if ((this.readyState == this.DONE)) {
-        if (this.status >= 200 && this.status < 400) {
-            this.insertDoctorsContent(this.responseText)
+    var request = this.request
+    if(request != null || request != undefined){
+      if(request.readyState == request.DONE) {
+        if (request.status >= 200 && request.status < 400) {
+              this.insertDoctorsContent(request.responseText);
         }
+      }
     }
 };
 
-DoxterDownloader.prototype.getDoxterData = function(doxterListener) {
+DoxterDownloader.prototype.getDoxterData = function() {
    if (document.readyState === 'complete') {
-        var request = new XMLHttpRequest();
-        if(doxterListener === undefined || doxterListener === null)
-        {
-            doxterListener = this.doxterRequestListener;
-        }
-        request.onreadystatechange = doxterListener;
-        request.open('GET', this.doxterApiUrl);
-        request.send();
-        request = null;
+        var allDoctorsDivs = this.getAllDoctorsDivs();
+        var data = this.prepareDataForSend(allDoctorsDivs);
+        this.request = new XMLHttpRequest();
+        this.request.onreadystatechange = this.doxterRequestListener.bind(this);
+        this.request.open('POST', this.doxterApiUrl);
+        this.request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        this.request.send(data);
+
     }
 };
