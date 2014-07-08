@@ -43,7 +43,7 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
 }
 
 
-DoxterDownloader.prototype.doxterRequestListener = function() {
+DoxterDownloader.prototype.onDataArrived = function() {
     var request = this.request
     if(request != null || request != undefined){
       if(request.readyState == request.DONE) {
@@ -56,10 +56,9 @@ DoxterDownloader.prototype.doxterRequestListener = function() {
 
 DoxterDownloader.prototype.getDoxterData = function() {
    if (document.readyState === 'complete') {
-        var allDoctorsDivs = this.getAllDoctorsDivs();
-        var data = this.prepareDataForSend(allDoctorsDivs);
+
         this.request = new XMLHttpRequest();
-        this.request.onreadystatechange = this.doxterRequestListener.bind(this);
+        this.request.onreadystatechange = this.onDataArrived.bind(this);
         this.request.open('POST', this.doxterApiUrl);
         this.request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         this.request.send(data);
