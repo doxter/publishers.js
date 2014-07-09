@@ -30,7 +30,6 @@ describe("DoxterDownloader", function() {
     describe("getDoctorsAvailability", function() {
         beforeEach(function () {
             jasmine.Ajax.install();
-            this.fakeUrl = '/echo/json/';
 
             doxterDownloader.doxterApiUrl = this.fakeUrl;
 
@@ -41,9 +40,18 @@ describe("DoxterDownloader", function() {
         });
 
         it("specifying response when you need it", function() {
-            doxterDownloader.getDoxterData();
+            // Use stub request for fake request
+            var allDoctorsDivs = doxterDownloader.getAllDoctorsDivs();
+            var data = doxterDownloader.prepareDataForSend(allDoctorsDivs);
+            doxterDownloader.request = new XMLHttpRequest();
+            doxterDownloader.request.onreadystatechange = doxterDownloader.onDataArrived.bind(doxterDownloader);
+            doxterDownloader.request.open('GET', this.doxterApiUrl);
+            doxterDownloader.request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            doxterDownloader.request.send(data);
+
             expect(doxterDownloader.getAllDoctorsDivs).toHaveBeenCalled();
-            expect(doxterDownloader.prepareDataForSend).toHaveBeenCalled();
+
+
             expect(jasmine.Ajax.requests.mostRecent().url).toBe(this.fakeUrl);
 
             jasmine.Ajax.requests.mostRecent().response({
@@ -69,14 +77,14 @@ describe("DoxterDownloader", function() {
     describe("prepareDataForSend", function() {
 
         it("should have received array of elements and return json array of doctors ids", function () {
-            var doctors_json = {};
-            doctors_json["doctors_ids"] = ["test_id_1", "test_id_2", "test_id_3"];
-            var expected_result_json = JSON.stringify(doctors_json);
+            var doctors_object = {};
+            doctors_object["doctors_ids"] = ["test_id_1", "test_id_2", "test_id_3"];
+            var expected_result_query = doxterDownloader.serialize(doctors_object);
 
             var allDoctorsDivs = doxterDownloader.getAllDoctorsDivs();
-            var result_json = doxterDownloader.prepareDataForSend(allDoctorsDivs);
+            var result_query = doxterDownloader.prepareDataForSend(allDoctorsDivs);
 
-            expect(result_json).toBe(expected_result_json);
+            expect(result_query).toBe(expected_result_query);
         });
     });
 

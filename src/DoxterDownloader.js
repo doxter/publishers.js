@@ -1,7 +1,7 @@
 'use strict';
 
 function DoxterDownloader() {
-  this.doxterApiUrl = '/echo/html/';
+  this.doxterApiUrl = 'http://localhost:3000/api/publishers/v1/doctors/next_availabilities.json';
 }
 
 DoxterDownloader.prototype.insertDoctorsContent = function(content) {
@@ -15,7 +15,7 @@ DoxterDownloader.prototype.insertDoctorsContent = function(content) {
             if(doctor_id != undefined)
             {
                 var value = doctor_id.value
-                if(value != undefined) {
+                if(value != undefined && content["doctors_ids"][value] != undefined) {
                     elements[element].innerHTML = content["doctors_ids"][value]
                 }
             }
@@ -26,7 +26,18 @@ DoxterDownloader.prototype.insertDoctorsContent = function(content) {
 DoxterDownloader.prototype.getAllDoctorsDivs = function() {
     var allDoctorsDivs = document.querySelectorAll('[data-doctor-id]');
     return allDoctorsDivs;
-}
+};
+
+DoxterDownloader.prototype.serialize = function(obj, prefix) {
+    var str = [];
+    for(var p in obj) {
+        var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+        str.push(typeof v == "object" ?
+            this.serialize(v, k) :
+            encodeURIComponent(k) + "=" + encodeURIComponent(v));
+    }
+    return str.join("&");
+};
 
 DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
     var doctors_json = {};
@@ -37,31 +48,11 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
     }
 
     doctors_json["doctors_ids"] = doctor_ids;
-    var serialized_json = JSON.stringify(doctors_json);
-
-    return serialized_json;
-}
-
-
-DoxterDownloader.prototype.onDataArrived = function() {
-    var request = this.request
-    if(request != null || request != undefined){
-      if(request.readyState == request.DONE) {
-        if (request.status >= 200 && request.status < 400) {
-              this.insertDoctorsContent(request.responseText);
-        }
-      }
-    }
+    return encodeURIComponent(doctor_ids);
 };
 
-DoxterDownloader.prototype.getDoxterData = function() {
-   if (document.readyState === 'complete') {
 
-        this.request = new XMLHttpRequest();
-        this.request.onreadystatechange = this.onDataArrived.bind(this);
-        this.request.open('POST', this.doxterApiUrl);
-        this.request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        this.request.send(data);
-
-    }
+DoxterDownloader.prototype.onDataArrived = function(result) {
+  result = JSON.parse(result)
+  this.insertDoctorsContent(result);
 };

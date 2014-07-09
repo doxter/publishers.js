@@ -16,7 +16,7 @@ module.exports = function(grunt) {
             },
             my_target: {
                 files: {
-                    'dest/doxter_publisher.min.js': ['dist/built.js']
+                    'public/doxter_publisher.min.js': ['dist/built.js']
                 }
             }
         },
