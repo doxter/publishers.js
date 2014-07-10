@@ -1,6 +1,22 @@
-> Doxter downloader plugin for publisher with jasmine
 
-## Getting Started
+> Doxter downloader plugin for publishers
+
+## Getting Started for Publishers
+1) Publisher must include script like this way
+```
+<script type="application/javascript" id="doxterPublisherDownloader" data-aid="custom_aid" src="doxter_publisher.min.js"></script>
+
+```
+2) Publisher must add this tag for sinchronize in his body tag
+```
+
+...
+<div id="doxter_content" data-doctor-id="test_id_3">lol</div>
+...
+```
+
+
+## Getting Started for Grunt
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install the project's dependencies
