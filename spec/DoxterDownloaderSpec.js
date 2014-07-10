@@ -19,6 +19,13 @@ describe("DoxterDownloader", function() {
         beforeEach(function () {
             this.jsonFixture = getJSONFixture("test_response.json");
          });
+
+        it("get query data", function () {
+            var content = this.jsonFixture["doctors_ids"]
+            var value = "test_id_1"
+            var result = doxterDownloader.getInsertedValue(content,value)
+            expect(result).toBe(content[0][value])
+        });
         it("should be able to insert a html content for each doctor id", function () {
 
             doxterDownloader.insertDoctorsContent(this.jsonFixture);
@@ -29,6 +36,7 @@ describe("DoxterDownloader", function() {
 
     describe("getDoctorsAvailability", function() {
         beforeEach(function () {
+            this.jsonFixture = getJSONFixture("test_response.json");
             jasmine.Ajax.install();
 
             doxterDownloader.doxterApiUrl = this.fakeUrl;
@@ -36,6 +44,7 @@ describe("DoxterDownloader", function() {
             spyOn(doxterDownloader,'getAllDoctorsDivs');
             spyOn(doxterDownloader,'prepareDataForSend');
             spyOn(doxterDownloader, 'insertDoctorsContent');
+            spyOn(doxterDownloader, "onDataArrived");
 
         });
 
@@ -43,26 +52,23 @@ describe("DoxterDownloader", function() {
             // Use stub request for fake request
             var allDoctorsDivs = doxterDownloader.getAllDoctorsDivs();
             var data = doxterDownloader.prepareDataForSend(allDoctorsDivs);
-            doxterDownloader.request = new XMLHttpRequest();
-            doxterDownloader.request.onreadystatechange = doxterDownloader.onDataArrived.bind(doxterDownloader);
-            doxterDownloader.request.open('GET', this.doxterApiUrl);
-            doxterDownloader.request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            doxterDownloader.request.send(data);
+            var request = new XMLHttpRequest();
 
+            request.onreadystatechange = doxterDownloader.onDataArrived;
+            request.open('GET', this.doxterApiUrl);
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.send(data);
             expect(doxterDownloader.getAllDoctorsDivs).toHaveBeenCalled();
-
-
             expect(jasmine.Ajax.requests.mostRecent().url).toBe(this.fakeUrl);
-
             jasmine.Ajax.requests.mostRecent().response({
 
                 "status": 200,
 
-                "contentType": 'text/plain',
+                "contentType": "application/json;charset=UTF-8",
 
-                "responseText": 'awesome response'
+                "responseText": this.jsonFixture
             });
-            expect(doxterDownloader.insertDoctorsContent).toHaveBeenCalledWith('awesome response');
+            expect(doxterDownloader.onDataArrived).toHaveBeenCalled();
         });
     });
 

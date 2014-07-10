@@ -5,6 +5,23 @@ function DoxterDownloader() {
   this.doxterApiUrl = 'http://localhost:3000/api/publishers/v1/doctors/next_availabilities.json';
 }
 
+
+DoxterDownloader.prototype.getInsertedValue = function (content,value) {
+    var result;
+    if(value !== undefined)
+    {
+        var filter_result = content.filter(function (doctor) {
+            return doctor[value] !== undefined
+        });
+
+        if (filter_result !== undefined && filter_result[0] !== undefined)
+        {
+              result = filter_result[0][value];
+        }
+    }
+    return result
+};
+
 DoxterDownloader.prototype.insertDoctorsContent = function(content) {
     var elements = this.getAllDoctorsDivs();
     for(var element in elements)
@@ -16,8 +33,10 @@ DoxterDownloader.prototype.insertDoctorsContent = function(content) {
             if(doctor_id != undefined)
             {
                 var value = doctor_id.value
-                if(value != undefined && content["doctors_ids"][value] != undefined) {
-                    elements[element].innerHTML = content["doctors_ids"][value]
+                var result = this.getInsertedValue(content["doctors_ids"],value)
+
+                if(result != undefined ) {
+                    elements[element].innerHTML = result
                 }
             }
         }
@@ -49,13 +68,16 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
     }
 
     doctors_json["doctors_ids"] = doctor_ids;
-    return encodeURIComponent(doctor_ids);
+    return this.serialize(doctors_json);
 };
 
 
 DoxterDownloader.prototype.onDataArrived = function(result) {
-  result = JSON.parse(result)
-  this.insertDoctorsContent(result);
+    if(result != null && result != undefined)
+    {
+      result = JSON.parse(result)
+      this.insertDoctorsContent(result);
+    }
 };
 
 
@@ -65,9 +87,17 @@ DoxterDownloader.prototype.onDataArrived = function(result) {
         var script = document.createElement('script');
         var allDoctorsDivs = _instance.getAllDoctorsDivs();
         var data = _instance.prepareDataForSend(allDoctorsDivs);
+        var aid = document.getElementById("doxterPublisherDownloader").getAttribute("data-aid");
+        var aid_params = "";
+
+        if (aid !== undefined)
+        {
+          aid_params = "&aid=" + aid
+        }
+
         window["doxter_instance_" + seed] = _instance.onDataArrived.bind(_instance);
         script.type = 'text/javascript';
-        script.src = _instance.doxterApiUrl +"?callback=window.doxter_instance_" + seed + '&doctors_ids=' + data;
+        script.src = _instance.doxterApiUrl +"?callback=window.doxter_instance_" + seed + '&' + data + aid_params;
         document.body.appendChild(script);
     });
 
