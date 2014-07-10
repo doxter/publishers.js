@@ -4,26 +4,27 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        karma: {
-            unit: {
-                configFile: 'karma.conf.js'
-            }
-        },
+        concat: {
+          dist: {
+            src: ['src/intro.js', 'src/DoxterDownloader.js', 'src/outro.js'],
+              dest: 'dist/built.js'
+              }
+            },
         uglify: {
             options: {
               mangle: false
             },
             my_target: {
                 files: {
-                    'dest/doxter_publisher.min.js': ['src/DoxterDownloader.js']
+                    'public/doxter_publisher.min.js': ['dist/built.js']
                 }
             }
         },
         jasmine : {
-            src : 'src/**/*.js',
+            src : 'src/DoxterDownloader.js',
             options : {
-                vendor: [
-                    'vendor/jasmine/jasmine-ajax.js'],
+                vendor: ['vendor/*.js',
+                    'vendor/**/*.js'],
                 specs : 'spec/**/*.js'
             }
         },
@@ -42,10 +43,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     grunt.registerTask('test', ['jasmine']);
-    grunt.registerTask('build', ['uglify']);
-    grunt.registerTask('default', ['karma']);
+
+    grunt.registerTask('build', ['concat','uglify']);
+    grunt.registerTask('default', ['test']);
 
 };

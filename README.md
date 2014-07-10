@@ -40,6 +40,9 @@ grunt.registerTask('test', ['jshint', 'jasmine']);
 [package.json]: https://npmjs.org/doc/json.html
 
 
+FOR PUBLISHERS
+<script src="http://doxter.de/doxter_publisher.min.js" async="async" type="text/javascript"></script>
+
 ## Release History
 
  * 2014-18-06 - v0.0.1 - Initial release
