@@ -28,7 +28,7 @@ DoxterDownloader.prototype.insertDoctorsContent = function(content) {
         var doctor_attributes = elements[element]["attributes"]
         if(doctor_attributes != undefined)
         {
-            var doctor_id = doctor_attributes.getNamedItem("data-doctor-id");
+            var doctor_id = doctor_attributes.getNamedItem("data-doxter-id");
             if(doctor_id != undefined)
             {
                 var value = doctor_id.value
@@ -43,7 +43,7 @@ DoxterDownloader.prototype.insertDoctorsContent = function(content) {
 };
 
 DoxterDownloader.prototype.getAllDoctorsDivs = function() {
-    var allDoctorsDivs = document.querySelectorAll('[data-doctor-id]');
+    var allDoctorsDivs = document.querySelectorAll('[data-doxter-id]');
     return allDoctorsDivs;
 };
 
@@ -63,7 +63,7 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
     var doctor_ids= [];
 
     for (var i = 0; i < data_divs.length; i++) {
-        doctor_ids[i] = data_divs[i].getAttribute("data-doctor-id");
+        doctor_ids[i] = data_divs[i].getAttribute("data-doxter-id");
     }
 
     doctors_json["doctors_ids"] = doctor_ids;
