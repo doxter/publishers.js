@@ -47,15 +47,20 @@ DoxterDownloader.prototype.getAllDoctorsDivs = function() {
     return allDoctorsDivs;
 };
 
-DoxterDownloader.prototype.serialize = function(obj, prefix) {
-    var str = [];
-    for(var p in obj) {
-        var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-        str.push(typeof v == "object" ?
-            this.serialize(v, k) :
-            encodeURIComponent(k) + "=" + encodeURIComponent(v));
-    }
-    return str.join("&");
+DoxterDownloader.prototype.serialize = function(obj) {
+    var result = "";
+    Object.keys(obj).map(function(k) {
+
+        obj[k].forEach(
+            function (element, index, array) {
+                var parameter = encodeURIComponent(k) + '[]=' + element;
+                result = result.concat(parameter)
+                if (index !== array.length - 1) {
+                    result = result.concat('&')
+                }
+            });
+    })
+    return result
 };
 
 DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
@@ -63,11 +68,11 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
     var doctor_ids= [];
 
     for (var i = 0; i < data_divs.length; i++) {
-        doctor_ids[i] = data_divs[i].getAttribute("data-doxter-id");
+        doctor_ids[i] = data_divs[i].getAttribute("data-doxter-id")
     }
 
     doctors_json["doctors_ids"] = doctor_ids;
-    return this.serialize(doctors_json);
+    return this.serialize(doctors_json)
 };
 
 
