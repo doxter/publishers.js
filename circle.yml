@@ -1,0 +1,8 @@
+deployment:
+  production:
+    branch: master
+    commands:
+      - ./deploy/install-aws.sh:
+          timeout: 1200
+      - ./deploy/upload_mini_version.sh -u:
+          timeout: 1200

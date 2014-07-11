@@ -3,7 +3,7 @@
 ## Getting Started for Publishers
 1) Publisher must include script like this way
 ```
-<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="custom_aid" src="doxter_publisher.min.js"></script>
+<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="custom_aid" src="http://js.doxter.de/doxter_publisher.min.js"></script>
 
 ```
 2) Publisher must add this tag for sinchronize in his body tag
