@@ -10,7 +10,7 @@
 ```
 
 ...
-<div id="doxter_content" data-doctor-id="test_id_3"/>
+<div id="doxter_content" data-doxter-id="test_id_3"/>
 ```
 
 
