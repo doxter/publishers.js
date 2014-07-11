@@ -81,7 +81,7 @@ DoxterDownloader.prototype.onDataArrived = function(result) {
 };
 
 
-    document.addEventListener("DOMContentLoaded", function(event) {
+    window.addEventListener("load", function(event) {
         var seed = +new Date();
         var _instance = new DoxterDownloader();
         var script = document.createElement('script');

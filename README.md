@@ -1,18 +1,16 @@
-
-> Doxter downloader plugin for publishers
+# Doxter downloader plugin for publishers
 
 ## Getting Started for Publishers
 1) Publisher must include script like this way
 ```
-<script type="application/javascript" id="doxterPublisherDownloader" data-aid="custom_aid" src="doxter_publisher.min.js"></script>
+<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="custom_aid" src="doxter_publisher.min.js"></script>
 
 ```
 2) Publisher must add this tag for sinchronize in his body tag
 ```
 
 ...
-<div id="doxter_content" data-doctor-id="test_id_3">lol</div>
-...
+<div id="doxter_content" data-doctor-id="test_id_3"/>
 ```
 
 
