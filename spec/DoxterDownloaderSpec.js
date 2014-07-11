@@ -30,7 +30,7 @@ describe("DoxterDownloader", function() {
 
             doxterDownloader.insertDoctorsContent(this.jsonFixture);
 
-            expect(document.querySelectorAll('[data-doctor-id=test_id_1]')[0].innerHTML).toBe('<div id="doxter_recieved_1"></div>');
+            expect(document.querySelectorAll('[data-doxter-id=test_id_1]')[0].innerHTML).toBe('<div id="doxter_recieved_1"></div>');
         });
     });
 
