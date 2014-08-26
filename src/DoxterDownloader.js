@@ -79,7 +79,6 @@ DoxterDownloader.prototype.prepareDataForSend = function(data_divs) {
 DoxterDownloader.prototype.onDataArrived = function(result) {
     if(result != null && result != undefined)
     {
-      result = JSON.parse(result)
       this.insertDoctorsContent(result);
     }
 };
