@@ -1,8 +1,8 @@
 deployment:
+  machine:
+    node:
+      version: v0.11.13
   production:
-    machine:
-      node:
-        version: v0.11.13
     branch: master
     commands:
       - ./deploy/install-aws.sh:
