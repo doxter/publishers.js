@@ -11,7 +11,7 @@ Requirements are:
  
 ### The customized markup snippet
 
-The snippet allows gives the publisher total control of the HTML layout that this plugin inserts. The template language usedis [Liquid](https://github.com/Shopify/liquid).
+The snippet allows gives the publisher total control of the HTML layout that this plugin inserts. The template language usedis [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers).
 
 At the moment the only object available is `time_url` that will be replaced by the link to the doxter profile with publisher's AID.
 
@@ -29,7 +29,7 @@ A future version will make the availabilities accessible within the template:
 <ul>
   {% for time in times %}
   <li class='time'>
-    <a href="{{ time.booking_url }}" target="_blank">{{ time.date }} {{ time.reasons }}</a> 
+    <a href="{{ time.booking_url }}" target="_blank">{{ time.starts_at | date: "%Y%m%d %H%:M" } }} {{ time.reasons }}</a> 
   </li>
   {% endfor %}
 </ul>
