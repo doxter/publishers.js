@@ -21,7 +21,7 @@ To install the plugin the following line needs to be inserted within the HEAD ta
 The `VALID_PUBLISHER_ID` needs to be replaced by the actual publisher id that is issued by doxter.
 
 
-### customized markup snippet
+### Customized markup snippet
 
 The snippet allows gives the publisher total control of the HTML layout that this plugin inserts. The template language usedis [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers).
 
