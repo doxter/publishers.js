@@ -1,4 +1,4 @@
-# publishers.js
+# doxter/publishers.js
 
 The doxter javascript plugin enables publishers to pull in doxter directory content and available times.
 
