@@ -5,11 +5,23 @@ The doxter javascript plugin enables publishers to pull in doxter directory cont
 Requirements are:
 
  - a valid doxter publisher ID (AID)
- - a customized markup snippet on doxter side
  - inclusion of this plugin in the publisher's head tag
+ - customized markup snippet on doxter side
  - container elements with a valid `doxter-id` in the body tag
  
-### The customized markup snippet
+
+### Plugin inclusion
+
+To install the plugin the following line needs to be inserted within the HEAD tag of the page:
+
+```HTML
+<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="VALID_PUBLISHER_ID" src="http://js.doxter.de/doxter_publisher.min.js"></script>
+```
+
+The `VALID_PUBLISHER_ID` needs to be replaced by the actual publisher id that is issued by doxter.
+
+
+### customized markup snippet
 
 The snippet allows gives the publisher total control of the HTML layout that this plugin inserts. The template language usedis [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers).
 
@@ -36,23 +48,11 @@ A future version will make the availabilities accessible within the template:
 </div>
 ```
 
-
-### Plugin inclusion
-
-To install the plugin the following line needs to be inserted within the HEAD tag of the page:
-
-```
-<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="VALID_PUBLISHER_ID" src="http://js.doxter.de/doxter_publisher.min.js"></script>
-```
-
-The `VALID_PUBLISHER_ID` needs to be replaced by the actual publisher id that is issued by doxter.
-
-
 ### Tagged container elements
 
 A tagged container element is a DIV-Tag that will be filled with the HTML fragment from the doxter doctor identified by the `data-doxter-id`.
 
-```
+```HTML
 <div id="doxter_content" data-doxter-id="test_id_3"/>
 ```
 
