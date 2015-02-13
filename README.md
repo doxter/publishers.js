@@ -5,9 +5,37 @@ The doxter javascript plugin enables publishers to pull in doxter directory cont
 Requirements are:
 
  - a valid doxter publisher ID (AID)
- - a customized HTML template on doxter
- - inclusion of this plugin in the publisher's <HEAD> tag
- - container elements with valid `doxter-ids` within the <BODY> tag
+ - a customized markup snippet on doxter side
+ - inclusion of this plugin in the publisher's head tag
+ - container elements with valid `doxter-ids` within the body tag
+ 
+### The customized markup snippet
+
+The snippet allows gives the publisher total control of the HTML layout that this plugin inserts. The template language usedis [Liquid](https://github.com/Shopify/liquid).
+
+At the moment the only object available is `time_url` that will be replaced by the link to the doxter profile with publisher's AID.
+
+```
+<div class='doxter entry'>
+<a href="{{ time_url }}" target="_blank">Termin online vereinbaren bei doxter.de</a>
+</div>
+```
+
+A future version will make the availabilities accessible within the template:
+
+
+```
+<div class='doxter availabilities'>
+<ul>
+  {% for time in times %}
+  <li class='time'>
+    <a href="{{ time.booking_url }}" target="_blank">{{ time.date }} {{ time.reasons }}</a> 
+  </li>
+  {% endfor %}
+</ul>
+</div>
+```
+
 
 ### Plugin inclusion
 
