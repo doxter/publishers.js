@@ -7,7 +7,7 @@ Requirements are:
  - a valid doxter publisher ID (AID)
  - a customized markup snippet on doxter side
  - inclusion of this plugin in the publisher's head tag
- - container elements with valid `doxter-ids` within the body tag
+ - container elements with a valid `doxter-id` in the body tag
  
 ### The customized markup snippet
 
@@ -15,7 +15,7 @@ The snippet allows gives the publisher total control of the HTML layout that thi
 
 At the moment the only object available is `time_url` that will be replaced by the link to the doxter profile with publisher's AID.
 
-```
+```HTML
 <div class='doxter entry'>
 <a href="{{ time_url }}" target="_blank">Termin online vereinbaren bei doxter.de</a>
 </div>
@@ -24,7 +24,7 @@ At the moment the only object available is `time_url` that will be replaced by t
 A future version will make the availabilities accessible within the template:
 
 
-```
+```HTML
 <div class='doxter availabilities'>
 <ul>
   {% for time in times %}
