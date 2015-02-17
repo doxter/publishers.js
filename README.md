@@ -8,7 +8,8 @@ Requirements are:
  - inclusion of this plugin in the publisher's head tag
  - customized markup snippet on doxter side
  - container elements with a valid `doxter-id` in the body tag
- 
+
+## Usage 
 
 ### Plugin inclusion
 
@@ -50,9 +51,21 @@ A future version will make the availabilities accessible within the template:
 
 ### Tagged container elements
 
-A tagged container element is a DIV-Tag that will be filled with the HTML fragment from the doxter doctor identified by the `data-doxter-id`.
+A tagged container element is a DIV-Tag that will be filled with the HTML fragment from the doxter doctor identified by the `data-doxter-id` (in this case from doctor Mustermann).
 
 ```HTML
-<div id="doxter_content" data-doxter-id="test_id_3"/>
+<div id="doxter_content" data-doxter-id="4d7dfd0d768e714f2b000005"/>
 ```
+
+## Fallback
+
+The doxter content that the javascript plugin inserts is always loaded asynchronously so that the publisher site will always work. To always have a fallback and link to the doxter profile the container element can be prefilled with the affiliate link:
+
+```HTML
+<div id="doxter_content" data-doxter-id="4d7dfd0d768e714f2b000005">
+<a href="http://www.doxter.de/doctors/4d7dfd0d768e714f2b000005" target="_blank">Termin online vereinbaren bei doxter.de</a>
+</div>
+```
+
+
 
