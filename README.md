@@ -59,7 +59,7 @@ A tagged container element is a DIV-Tag that will be filled with the HTML fragme
 
 ## Fallback
 
-The doxter content that the javascript plugin inserts is always loaded asynchronously so that the publisher site will always work. To always have a fallback when the dynamic content should does not work the container element may be prefilled with the profile link:
+The doxter content that the javascript plugin inserts is always loaded asynchronously so that the publisher site will always work. To have a fallback when the dynamic content should not work the container element may be prefilled with the profile link:
 
 ```HTML
 <div id="doxter_content" data-doxter-id="4d7dfd0d768e714f2b000005">
