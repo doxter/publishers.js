@@ -11,14 +11,14 @@ grunt=`which grunt`
 
 grunt build
 
-UPLOAD='dest/doxter_publisher.min.js'
-FILENAME='doxter_publisher.min.js'
+UPLOAD='dest/publisher.min.js'
+FILENAME='publisher.min.js'
 chmod 444 $UPLOAD
 
 if [ -n "$UPLOAD" ]; then
 
 
-  $awscli s3 --region=eu-west-1 cp $UPLOAD s3://js.doxter.de --acl public-read
+  $awscli s3 --region=eu-central-1 cp $UPLOAD s3://js.doctena.de --acl public-read
 
 fi
 

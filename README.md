@@ -1,6 +1,6 @@
 # doxter/publishers.js
 
-The doxter javascript plugin enables publishers to pull in doxter directory content and available times.
+The doxter/doctena javascript plugin enables publishers to pull in doctena directory content and available times.
 
 Requirements are:
 
@@ -16,7 +16,7 @@ Requirements are:
 To install the plugin the following line needs to be inserted within the HEAD tag of the page:
 
 ```HTML
-<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="VALID_PUBLISHER_ID" src="http://js.doxter.de/doxter_publisher.min.js"></script>
+<script type="application/javascript" id="doxterPublisherDownloader" async data-aid="VALID_PUBLISHER_ID" src="http://js.doctena.de/publisher.min.js"></script>
 ```
 
 The `VALID_PUBLISHER_ID` needs to be replaced by the actual publisher id that is issued by doxter.
@@ -63,7 +63,7 @@ The doxter content that the javascript plugin inserts is always loaded asynchron
 
 ```HTML
 <div id="doxter_content" data-doxter-id="4d7dfd0d768e714f2b000005">
-  <a href="http://www.doxter.de/doctors/4d7dfd0d768e714f2b000005" target="_blank">Termin online vereinbaren bei doxter.de</a>
+  <a href="http://de.doctena.de/doctors/4d7dfd0d768e714f2b000005" target="_blank">Termin online vereinbaren bei doxter.de</a>
 </div>
 ```
 

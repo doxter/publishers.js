@@ -1,7 +1,7 @@
 'use strict';
 
 function DoxterDownloader() {
-  this.doxterApiUrl = 'http://doxter.de/api/publishers/v1/doctors/next_availabilities.json';
+  this.doxterApiUrl = 'https://de.doctena.de/api/publishers/v1/doctors/next_availabilities.json';
 }
 
 
